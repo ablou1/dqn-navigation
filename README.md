@@ -116,3 +116,10 @@ You can define the number of episodes allocated for each training process.
 
 ## Results analysis
 This part shows graph comparing different attributes values and different agents.
+
+## checkpoint.pth format
+The checkpoint.pth file contains a dictionary with the following informations:
+> - 'state_size': the state size of the environment during the training,
+> - 'action_size': the action size of the environment during the training,
+> - 'hidden_layer_size': the size of hidden layer used in the model. There are Two hidden layer both with the same size.
+> - 'state_dict': the state_dict of the network trained for the agent who succeed.
