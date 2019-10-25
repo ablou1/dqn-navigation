@@ -41,7 +41,7 @@ To set up your python environment to run the code in this repository, follow the
 3. Install Pytorch & Cuda
 	> conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
-4. Clone the udacity/deep-reinforcement-learning repository and navigate to the python/ folder. Then, install several dependencies.
+4. Clone the udacity/deep-reinforcement-learning repository (outtside the current project) and navigate to the python/ folder. Then, install several dependencies.
 	> git clone https://github.com/udacity/deep-reinforcement-learning.git  
 	> cd deep-reinforcement-learning/python  
 	> pip install .
