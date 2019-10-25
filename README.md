@@ -33,24 +33,23 @@ To set up your python environment to run the code in this repository, follow the
      > conda create --name drlnd python=3.6  
 	 > activate drlnd
 
-2. Follow the instructions in [this repository](https://github.com/udacity/deep-reinforcement-learning#dependencies) to perform a minimal install of OpenAI gym.
-   - Next, install the **classic control** environment group by following the instructions [here](https://github.com/openai/gym/blob/master/docs/environments.md).
-   - Then, install the **box2d** environment group by following the instructions [here](https://github.com/openai/gym/blob/master/docs/environments.md).
+2. If not already done, clone the current repository and navigate to the root folder. Then install required dependencies.
+	> git clone https://github.com/ablou1/dqn-navigation.git  
+	> cd dqn-navigation  
+	> pip install -r requirements.txt
 
-3. Clone the udacity/deep-reinforcement-learning repository and navigate to the python/ folder. Then, install several dependencies.
+3. Install Pytorch & Cuda
+	> conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
+
+4. Clone the udacity/deep-reinforcement-learning repository and navigate to the python/ folder. Then, install several dependencies.
 	> git clone https://github.com/udacity/deep-reinforcement-learning.git  
 	> cd deep-reinforcement-learning/python  
 	> pip install .
 
-4. Create an [IPython kernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the drlnd environment.
+5. Create an [IPython kernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the drlnd environment.
 	> python -m ipykernel install --user --name drlnd --display-name "drlnd"
 
-5. Before running code in a notebook, change the kernel to match the drlnd environment by using the drop-down Kernel menu.
-
-6. If not already done, clone the current repository and navigate to the root folder. Then install several dependencies.
-	> git clone https://github.com/ablou1/dqn-navigation.git  
-	> cd dqn-navigation  
-	> pip install .
+6. Before running code in a notebook, change the kernel to match the drlnd environment by using the drop-down Kernel menu.
 
 ![Jupyter](Jupyter.png)
 
@@ -68,7 +67,52 @@ Then, place the file in the root of this repository, and unzip (or decompress) t
 
 (For AWS) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the "headless" version of the environment. You will **not** be able to watch the agent without enabling a virtual screen, but you will be able to train the agent. (To watch the agent, you should follow the instructions to [enable a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the Linux operating system above.)
 
+# Agents
+This repository contains four type of agent that could be trained:
+- **DqnAgent** : Use a "classical" DqnAgent algorithm
+- **DoubleDqnAgent**: DqnAgent adding the Double DQN technic
+- **DuelingDqnAgent**: DqnAgent adding the Dueling DQN technic
+- **DuelingDoubleDqnAgent**: DqnAgent adding both Dueling and Double DQN technics.
+
 # Train (single run)
-The train.py file is dedicated to run a single train of a specified agent. In order to 
+The train.py file is dedicated to run a single train of a specified agent.
+
+1. Update the file_name of the UnityEnvironment in order to match the location of the Unity environment that you downloaded.
+- Mac: "path/to/Banana.app"
+- Windows (x86): "path/to/Banana_Windows_x86/Banana.exe"
+- Windows (x86_64): "path/to/Banana_Windows_x86_64/Banana.exe"
+- Linux (x86): "path/to/Banana_Linux/Banana.x86"
+- Linux (x86_64): "path/to/Banana_Linux/Banana.x86_64"
+- Linux (x86, headless): "path/to/Banana_Linux_NoVis/Banana.x86"
+- Linux (x86_64, headless): "path/to/Banana_Linux_NoVis/Banana.x86_64"
+
+	For instance, if you are using a Mac, then you downloaded Banana.app. If this file is in the same folder as the notebook, then the line below should appear as follows:
+	> env = UnityEnvironment(file_name="Banana.app")
+
+2. Allocate the good agent class depending on the agent you want to train to the agent variable. The inputs parameter are the same for all kind of agent. Feel free to modify this parameter in order to make tests.
+
+3. Run the training process by executing the following command :
+	> python train.py
+
+	It automatically create a checkpoint file with the following format name ({agent_name}_checkpooint.pth). You can display your agent to see him performing with the display procedure.
+
+# Display an agent
+The display_agent.py is dedicated to display an agent playing the game.
+
+1. Update the AGENT_CLASS with the class name of the agent you want to display. (You must have succeed the training step before using this display mode)
+
+2. Display the game
+	> python display_agent.py
 
 # Train (compare parameter and agents)
+The **Training Analysis.ipynb** notebook is dedicated to compare different parameterization of the agent training and also to compare different classes of agents.
+
+## Training part
+You can define the number of episodes allocated for each training process. 
+
+1. The first subpart is dedicated to test parameters. You just have to indicate the values you want to test. Take care of the calculation time. After each training, a file save the result in order to display graph at the end of the notebook. No checkpoint file are saved in this part.
+
+2. The second part is dedicated to the agent class comparison. One training is executed for each class with the same parameters (you can change this values). If the agent succeed (having an average score higher than 13 on 100 episodes), a checkpoint is created for that agent. You can also display it (cf. previous part).
+
+## Results analysis
+This part shows graph comparing different attributes values and different agents.
