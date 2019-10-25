@@ -1,10 +1,11 @@
 from unityagents import UnityEnvironment
 import numpy as np
-from dqn_agent import DqnAgent
+from dqn_agent import DqnAgent, DoubleDqnAgent
+from dueling_dqn_agent import DuelingDqnAgent, DuelingDoubleDqnAgent
 from agent import Agent
 import torch
 
-AGENT_CLASS = DqnAgent
+AGENT_CLASS = DuelingDqnAgent
 
 # Load the Banana environment
 env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe")
@@ -34,18 +35,18 @@ def load_checkpoint(filepath):
     checkpoint = torch.load(filepath)
     assert checkpoint['state_size'] == state_size
     assert checkpoint['action_size'] == action_size
-    agent = AGENT_CLASS(state_size, action_size, 0,
-                        hidden_layer_size=checkpoint['hidden_layer_size'], mode=Agent.PLAYING)
-    agent.qnetwork_local.load_state_dict(checkpoint['state_dict'])
-    return agent
+    agt = AGENT_CLASS(state_size, action_size, 0,
+                      hidden_layer_size=checkpoint['hidden_layer_size'], mode=Agent.PLAYING)
+    print(agt.qnetwork_local.load_state_dict(checkpoint['state_dict']))
+    return agt
 
 
-agent = load_checkpoint(f'{AGENT_CLASS.__name__}_checkpoint.pth')
+agt = load_checkpoint(f'{AGENT_CLASS.__name__}_checkpoint.pth')
 env_info = env.reset(train_mode=False)[brain_name]  # reset the environment
 state = env_info.vector_observations[0]            # get the current state
 score = 0                                          # initialize the score
 while True:
-    action = agent.act(state)                      # select an action
+    action = agt.act(state)                      # select an action
     env_info = env.step(action)[brain_name]        # send the action to the environment
     next_state = env_info.vector_observations[0]   # get the next state
     reward = env_info.rewards[0]                   # get the reward
