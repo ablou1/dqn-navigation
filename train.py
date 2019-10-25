@@ -41,7 +41,7 @@ def dqn(agent, n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_dec
     """
     best_score = 13.0                  # Only save the agent if he gets a result better than 13.0
     # Number of episodes needed to solve the environment (mean score of 13 on the 100 last episodes)
-    episode_solved = 2000
+    episode_solved = n_episodes
     scores = []                        # list containing scores from each episode
     scores_mean = []                   # List containing mean value of score_window
     scores_window = deque(maxlen=100)  # last 100 scores
@@ -78,12 +78,12 @@ def dqn(agent, n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_dec
                               'state_dict': agent.qnetwork_local.state_dict()
                               }
                 torch.save(checkpoint, f'{agent.name}_checkpoint.pth')
-    if episode_solved < 2000:
+    if episode_solved < n_episodes:
         print(f'\n{agent.name} - best average score : {best_score} - Environment solved after {episode_solved} episodes')
     return scores, scores_mean
 
 
-scores, _ = dqn(agent, n_episodes=2, eps_decay=0.98, save_checkpoint=True)
+scores, _ = dqn(agent, eps_decay=0.98, save_checkpoint=True)
 
 # plot the scores
 fig = plt.figure()
