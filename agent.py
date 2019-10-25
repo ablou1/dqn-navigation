@@ -80,12 +80,11 @@ class Agent():
         state = torch.from_numpy(state).float().unsqueeze(0).to(device)
         self.qnetwork_local.eval()
         with torch.no_grad():
-            action_values = self.qnetwork_target(state)
+            action_values = self.qnetwork_local(state)
         self.qnetwork_local.train()
 
         # In "playing" mode, select the best action
         if self.mode == self.PLAYING:
-            self.qnetwork_local.eval()
             return np.int(np.argmax(action_values.cpu().data.numpy()))
 
         # Epsilon-greedy action selection
