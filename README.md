@@ -123,3 +123,5 @@ The checkpoint.pth file contains a dictionary with the following informations:
 > - 'action_size': the action size of the environment during the training,
 > - 'hidden_layer_size': the size of hidden layer used in the model. There are Two hidden layer both with the same size.
 > - 'state_dict': the state_dict of the network trained for the agent who succeed.
+
+the checkpoint.pth file correspond to the DuelingDoubleDqnAgent_checkpoint.pth file
