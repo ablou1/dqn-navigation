@@ -5,7 +5,7 @@ from dueling_dqn_agent import DuelingDqnAgent, DuelingDoubleDqnAgent
 from agent import Agent
 import torch
 
-AGENT_CLASS = DuelingDqnAgent
+AGENT_CLASS = DuelingDoubleDqnAgent
 
 # Load the Banana environment
 env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe")
