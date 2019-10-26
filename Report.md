@@ -3,9 +3,9 @@
 ## Learning Algorithm
 
 This repository compare 4 different algorithms :
-> - Deep Q-Learning Algorithm (DqnAgent)
-> - Double DQN (DoubleDqnAgent)
-> - Dueling DQN (DuelingDqnAgent)
+> - Deep Q-Learning Algorithm (DqnAgent) [(more details)](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf)
+> - Double DQN (DoubleDqnAgent) [(more details)](https://arxiv.org/abs/1509.06461)
+> - Dueling DQN (DuelingDqnAgent) [(more details)](https://arxiv.org/abs/1511.06581)
 > - Dueling Double DQN (DuelingDoubleDqnAgent)
 
 For now, the one which got the best results is the Dueling Double DQN.
