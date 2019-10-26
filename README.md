@@ -94,12 +94,12 @@ The train.py file is dedicated to run a single train of a specified agent.
 3. Run the training process by executing the following command :
 	> python train.py
 
-	It automatically create a checkpoint file with the following format name ({agent_name}_checkpooint.pth). You can display your agent to see him performing with the display procedure.
+	It automatically create a checkpoint file with the following name format ({agent_name}_checkpoint.pth). You can display your agent to see him performing with the display procedure.
 
 # Display an agent
 The display_agent.py is dedicated to display an agent playing the game.
 
-1. Update the AGENT_CLASS with the class name of the agent you want to display. (You must have succeed the training step before using this display mode)
+1. Update the AGENT_CLASS with the class name of the agent you want to display. (You must have succeed the training step before using this display mode). The repository contains the checkpoint file of each algorithm. You can already display all of them.
 
 2. Display the game
 	> python display_agent.py
@@ -112,7 +112,7 @@ You can define the number of episodes allocated for each training process.
 
 1. The first subpart is dedicated to test parameters. You just have to indicate the values you want to test. Take care of the calculation time. After each training, a file save the result in order to display graph at the end of the notebook. No checkpoint file are saved in this part.
 
-2. The second part is dedicated to the agent class comparison. One training is executed for each class with the same parameters (you can change this values). If the agent succeed (having an average score higher than 13 on 100 episodes), a checkpoint is created for that agent. You can also display it (cf. previous part).
+2. The second part is dedicated to the agent class comparison. One training is executed for each class with the same parameters (you can change this values). If the agent succeed (having an average score higher than 13 on 100 following episodes), a checkpoint is created for that agent. You can also display it (cf. previous part).
 
 ## Results analysis
 This part shows graph comparing different attributes values and different agents.
@@ -121,7 +121,7 @@ This part shows graph comparing different attributes values and different agents
 The checkpoint.pth file contains a dictionary with the following informations:
 > - 'state_size': the state size of the environment during the training,
 > - 'action_size': the action size of the environment during the training,
-> - 'hidden_layer_size': the size of hidden layer used in the model. There are Two hidden layer both with the same size.
+> - 'hidden_layer_size': the size of hidden layers used in the model. There are Two hidden layers both with the same size.
 > - 'state_dict': the state_dict of the network trained for the agent who succeed.
 
 the checkpoint.pth file correspond to the DuelingDoubleDqnAgent_checkpoint.pth file

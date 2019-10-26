@@ -22,11 +22,10 @@ The network used for these algorithms is the following.
 > For the DuelingDqnAgent and the DuelingDoubleDqnAgent the network is nearly the same.
 > - The input Layer (State_Size)
 > - Two fully connected layers (Hidden_Layer_size)
-> - The output Layer (Action_size)
-> - The Relu function is used before the two hidden layers and the last but one level
 > - A fully connected layer named advantage has been added. It is connected to the last "hidden" layer. (Action size)
 > - A fully connected layer named value has also been connected to the last "hidden" layer. (size = 1)
 > - The final layer is the sum of the value layer + the advantage one - the mean of the advantage one.
+> - The Relu function is used before the two hidden layers and the last but one level
 > - The optimizer is the Adam one
 > - The mse is used for the loss function 
 
